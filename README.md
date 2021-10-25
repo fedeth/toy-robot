@@ -15,7 +15,7 @@ It is also possible to add others readers with a minimal effort( see EmailReader
 ### Tabletop
 Tabletops are responsible to check if a specific move is allowed or not on the board. In its basic implementation, it checks only if a move is executed within the field boundaries, but it is possible to increase the logical complexity by adding more strict constraints
 
-## Robot
+### Robot
 A Robot contains the set of allowed instructions and it is initialized with a specific tabletop in which it can move.
 The Robot has an internal state that contains the coordinates and the orientation of the robot at any single time.
 
