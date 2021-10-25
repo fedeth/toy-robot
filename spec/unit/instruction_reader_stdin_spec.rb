@@ -7,7 +7,7 @@ module RobotSimulator
   RSpec.describe InstructionReaders::StandardInputReader do
     let(:stdin_reader) { InstructionReaders::StandardInputReader.new }
 
-    def prepare_fake_io
+    def fake_io
       fake_io = StringIO.new
       fake_io.puts 'FOO bar,baz'
       fake_io.puts 'SPACE   this acts like a single param'
@@ -19,7 +19,7 @@ module RobotSimulator
 
     context 'when process an IO' do
       it 'parses the lines' do
-        $stdin = prepare_fake_io
+        $stdin = fake_io
         yield_results = [
           ['FOO', ['bar', 'baz']],
           ['SPACE', ['thisactslikeasingleparam']],

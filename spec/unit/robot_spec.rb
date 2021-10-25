@@ -69,39 +69,64 @@ module RobotSimulator
           robot.command_place(-1, 1, 'NORTH')
         end
       end
+    end
 
-      context 'when LEFT command is called' do
-        let(:robot) { Robot.new(instance_double(Tabletop)) }
-        it 'delegate the operation to the state' do
-          allow(robot).to receive_message_chain(:state, :rotate_left!)
-          expect(robot.state).to receive(:rotate_left!)
-          robot.command_left
-        end
+    context 'when MOVE command is called' do
+      let(:robot) { Robot.new(tabletop_double) }
+
+      let(:tabletop_double) do
+        d_tabletop = double(Tabletop)
+        allow(d_tabletop).to receive(:allowed_move?).and_return(true)
+        d_tabletop
       end
 
-      context 'when RIGHT command is called' do
-        let(:robot) { Robot.new(instance_double(Tabletop)) }
-        it 'delegate the operation to the state' do
-          allow(robot).to receive_message_chain(:state, :rotate_right!)
-          expect(robot.state).to receive(:rotate_right!)
-          robot.command_right
-        end
+      let(:state) do
+        d_state = double(Robot::State)
+        allow(d_state).to receive(:pos_x).and_return 0
+        allow(d_state).to receive(:pos_y).and_return 0
+        allow(d_state).to receive(:orientation).and_return 'NORTH'
+        allow(d_state).to receive(:update_position)
+        d_state
       end
 
-      context 'when REPORT command is called' do
-        let(:robot) { Robot.new(instance_double(Tabletop)) }
-        let(:state) do
-          d_state = double(Robot::State)
-          allow(d_state).to receive(:pos_x).and_return 1
-          allow(d_state).to receive(:pos_y).and_return 2
-          allow(d_state).to receive(:orientation).and_return 'NORTH'
-          d_state
-        end
+      it 'calls update_position with valid data' do
+        allow(robot).to receive(:state).and_return(state)
+        expect(state).to receive(:update_position).with(0, 1)
+        robot.command_move
+      end
+    end
 
-        it 'prints the robot state' do
-          allow(robot).to receive(:state).and_return(state)
-          expect { robot.command_report }.to output("X: 1, Y: 2, NORTH\n").to_stdout
-        end
+    context 'when LEFT command is called' do
+      let(:robot) { Robot.new(instance_double(Tabletop)) }
+      it 'delegate the operation to the state' do
+        allow(robot).to receive_message_chain(:state, :rotate_left!)
+        expect(robot.state).to receive(:rotate_left!)
+        robot.command_left
+      end
+    end
+
+    context 'when RIGHT command is called' do
+      let(:robot) { Robot.new(instance_double(Tabletop)) }
+      it 'delegate the operation to the state' do
+        allow(robot).to receive_message_chain(:state, :rotate_right!)
+        expect(robot.state).to receive(:rotate_right!)
+        robot.command_right
+      end
+    end
+
+    context 'when REPORT command is called' do
+      let(:robot) { Robot.new(instance_double(Tabletop)) }
+      let(:state) do
+        d_state = double(Robot::State)
+        allow(d_state).to receive(:pos_x).and_return 1
+        allow(d_state).to receive(:pos_y).and_return 2
+        allow(d_state).to receive(:orientation).and_return 'NORTH'
+        d_state
+      end
+
+      it 'prints the robot state' do
+        allow(robot).to receive(:state).and_return(state)
+        expect { robot.command_report }.to output("X: 1, Y: 2, NORTH\n").to_stdout
       end
     end
   end
