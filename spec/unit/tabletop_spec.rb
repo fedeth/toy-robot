@@ -27,14 +27,14 @@ module RobotSimulator
     context 'when check if a move is allowed' do
       let(:tabletop) { RobotSimulator::Tabletop.new(3, 3) }
 
-      context 'whit a valid move' do
-        it 'exepcts to return true' do
+      context 'with a valid move' do
+        it 'exepects to return true' do
           expect(tabletop.allowed_move?(2, 2)).to be true
         end
       end
 
-      context 'whit a invalid move' do
-        it 'exepcts to return false' do
+      context 'with an invalid move' do
+        it 'exepects to return false' do
           expect(tabletop.allowed_move?(3, 4)).to be false
         end
       end
