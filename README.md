@@ -24,4 +24,4 @@ The Robot has an internal state that contains the coordinates and the orientatio
 - The game instantiates a new robot, and ask the command reader for the next instruction. (A)
 - The robot check if it can execute the instruction and eventually ask tabletop if the new position is allowed.(B)
 - Tabletop replies with a boolean answer. (C) 
-- The robot asks the internal state to read/update the internal state.
+- The robot asks the internal state to read/update the internal state. (D)
