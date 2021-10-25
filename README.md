@@ -1,6 +1,16 @@
 # Toy Robot
 This is a Ruby implementation of Toy Robot game.
 
+## Usage
+```bash
+$ ruby examples/sample_with_file.rb
+```
+or
+
+```bash
+$ ruby examples/sample_with_stdin.rb
+```
+
 ## Design and considerations
  ![Game design picture](https://i.ibb.co/BP01g6S/Screenshot-from-2021-10-25-12-21-04.png)
  There are 3 main entities that cooperate together to run this game.
