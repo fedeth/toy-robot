@@ -8,3 +8,6 @@ end
 
 class InvalidInitializationError < StandardError
 end
+
+class MalformedMapError < StandardError
+end

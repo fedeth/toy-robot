@@ -3,7 +3,7 @@
 require 'set'
 require_relative './robot_simulator/instruction_readers'
 require_relative './robot_simulator/robot'
-require_relative './robot_simulator/tabletop'
+require_relative './robot_simulator/tabletops'
 require_relative './robot_simulator/custom_errors'
 
 module RobotSimulator
