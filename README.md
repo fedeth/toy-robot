@@ -1,6 +1,8 @@
 # Toy Robot
 This is a Ruby implementation of Toy Robot game.
 
+UPDATE 26/10/21: added a [new](https://github.com/fedeth/toy-robot/tree/feature/add-new-table-validator) validator based on ASCII (TableMap)
+
 ## Usage
 ```bash
 $ ruby examples/sample_with_file.rb
